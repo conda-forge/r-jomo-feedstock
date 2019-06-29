@@ -1,4 +1,4 @@
-{% set version = '2.6-2' %}
+{% set version = '2.6-8' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -7,36 +7,39 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: jomo_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/jomo_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/jomo/jomo_{{ version }}.tar.gz
-  sha256: 67496d6d69ddbe9a796789fd8b3ac32cada09a81cf5a8e7b925a21e085e2d87f
+  sha256: cb6fd4693ac912c5c812acb639f58edee98e205679f58ebc2a440d865973ff24
 
 build:
   merge_build_host: True  # [win]
-  number: 1000
-  skip: true  # [win32]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - {{ compiler('c') }}        # [not win]
-    - {{native}}toolchain        # [win]
+    - {{ compiler('c') }}              # [not win]
+    - {{ compiler('m2w64_c') }}        # [win]
     - {{posix}}filesystem        # [win]
     - {{posix}}make
-    - {{posix}}sed  # [win]
-    - {{posix}}coreutils  # [win]
+    - {{posix}}sed               # [win]
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
   host:
     - r-base
+    - r-mass
     - r-lme4
+    - r-ordinal
     - r-survival
   run:
     - r-base
     - {{native}}gcc-libs         # [win]
+    - r-mass
     - r-lme4
+    - r-ordinal
     - r-survival
 
 test:
@@ -57,8 +60,21 @@ about:
 
 extra:
   recipe-maintainers:
-    - johanneskoester
-    - bgruening
-    - daler
-    - jdblischak
-    - cbrueffer
+    - conda-forge/r
+
+# Package: jomo
+# Type: Package
+# Title: Multilevel Joint Modelling Multiple Imputation
+# Version: 2.6-8
+# Date: 2019-05-21
+# Author: Matteo Quartagno, James Carpenter
+# Maintainer: Matteo Quartagno <m.quartagno@ucl.ac.uk>
+# Description: Similarly to Schafer's package 'pan', 'jomo' is a package for multilevel joint modelling multiple imputation (Carpenter and Kenward, 2013) <doi: 10.1002/9781119942283>. Novel aspects of 'jomo' are the possibility of handling binary and categorical data through latent normal variables, the option to use cluster-specific covariance matrices and to impute compatibly with the substantive model.
+# License: GPL-2
+# LazyData: yes
+# Suggests: mitml
+# Imports: stats, lme4, survival, MASS, ordinal
+# NeedsCompilation: yes
+# Packaged: 2019-05-21 09:12:13 UTC; rmjlmqu
+# Repository: CRAN
+# Date/Publication: 2019-05-21 10:00:03 UTC
