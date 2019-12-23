@@ -1,4 +1,4 @@
-{% set version = '2.6-9' %}
+{% set version = "2.6-10" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/jomo_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/jomo/jomo_{{ version }}.tar.gz
-  sha256: b90f47071e62b8863b00b1ae710a56ae6efbfe2baeb9963f8a91a10d6183cc9b
+  sha256: 4063d48e259e936dc0bd9dc616a09043f695703848cb1bf8faa08c07922034cd
 
 build:
   merge_build_host: True  # [win]
