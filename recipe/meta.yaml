@@ -1,4 +1,4 @@
-{% set version = "2.6-10" %}
+{% set version = "2.7-0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/jomo_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/jomo/jomo_{{ version }}.tar.gz
-  sha256: 4063d48e259e936dc0bd9dc616a09043f695703848cb1bf8faa08c07922034cd
+  sha256: ef4c27b7a8432777d863ffb281ebd2b848b88099832d8167ed43b9a1b9a8b6eb
 
 build:
-  merge_build_host: True  # [win]
-  number: 1
+  merge_build_host: true  # [win]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -50,14 +50,11 @@ test:
 about:
   home: https://CRAN.R-project.org/package=jomo
   license: GPL-2
-  summary: 'Similarly to Schafer''s package ''pan'', ''jomo'' is a package for multilevel joint
-    modelling multiple imputation (Carpenter and Kenward, 2013) <doi: 10.1002/9781119942283>.
-    Novel aspects of ''jomo'' are the possibility of handling binary and categorical
-    data through latent normal variables, the option to use cluster-specific covariance
-    matrices and to impute compatibly with the substantive model. '
+  summary: "Similarly to Schafer's package 'pan', 'jomo' is a package for multilevel joint modelling multiple imputation (Carpenter and Kenward, 2013) <doi: 10.1002/9781119942283>. Novel aspects of 'jomo' are the possibility of handling binary and categorical data through latent normal variables, the option to use cluster-specific\
+    \ covariance matrices and to impute compatibly with the substantive model. "
   license_family: GPL2
   license_file:
-    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
 
 extra:
   recipe-maintainers:
