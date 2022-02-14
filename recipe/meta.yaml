@@ -1,4 +1,4 @@
-{% set version = "2.7-2" %}
+{% set version = "2.7-3" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/jomo_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/jomo/jomo_{{ version }}.tar.gz
-  sha256: 3962d5cbecc60e72670329dbef0dd74303080f5ea2a79c91e27f75db99ba6ce9
+  sha256: 9d3987f3a73d305f3ab6fc66efc04a196a7eb8b65e20c411131dc17af51f0063
 
 build:
   merge_build_host: true  # [win]
@@ -28,12 +28,14 @@ requirements:
     - {{ posix }}sed               # [win]
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
     - r-mass
     - r-lme4
     - r-ordinal
     - r-survival
+    - r-tibble
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
@@ -41,6 +43,7 @@ requirements:
     - r-lme4
     - r-ordinal
     - r-survival
+    - r-tibble
 
 test:
   commands:
