@@ -28,12 +28,14 @@ requirements:
     - {{ posix }}sed               # [win]
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
     - r-mass
     - r-lme4
     - r-ordinal
     - r-survival
+    - r-tibble
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
@@ -41,6 +43,7 @@ requirements:
     - r-lme4
     - r-ordinal
     - r-survival
+    - r-tibble
 
 test:
   commands:
