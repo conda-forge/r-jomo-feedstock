@@ -20,12 +20,6 @@ build:
 requirements:
   build:
     - cross-r-base {{ r_base }}  # [build_platform != target_platform]
-    - r-survival                 # [build_platform != target_platform]
-    - r-ordinal                  # [build_platform != target_platform]
-    - r-lme4                     # [build_platform != target_platform]
-    - r-tibble                   # [build_platform != target_platform]
-    - r-mass                     # [build_platform != target_platform]
-    - cross-r-base {{ r_base }}  # [build_platform != target_platform]
     - r-mass                     # [build_platform != target_platform]
     - r-lme4                     # [build_platform != target_platform]
     - r-ordinal                  # [build_platform != target_platform]
